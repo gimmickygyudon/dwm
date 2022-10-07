@@ -1,24 +1,25 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
-static const int user_bh            = 2;        /* 2 is the default spacing around the bar's font */
+static const int user_bh            = 10;        /* 2 is the default spacing around the bar's font */
 static const char *fonts[]          = { "JetBrains Mono:size=10" };
 static const char dmenufont[]       = "JetBrains Mono:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_gray1[]       = "#282a36";
+static const char col_gray2[]       = "#282a36";
+static const char col_gray3[]       = "#f8f8f2";
+static const char col_gray4[]       = "#6272a4";
+static const char col_cyan[]        = "#44475a";
+static const char col_purple[]      = "#bd93f9";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray4, col_gray1, col_cyan },
+	[SchemeSel]  = { col_gray3, col_cyan,  col_purple },
 };
 
 static const char *const autostart[] = {
@@ -27,7 +28,12 @@ static const char *const autostart[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "cmd", "www", "dev", "dir", "med", "chat", "ide", "bug", "sys" };
+static const char *tags[] = { "cmd", "www", "dev", "dir", "med", "rss", "chat", "bug", "sys" };
+
+static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
+static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
 
 static const Rule rules[] = {
 	/* xprop(1):

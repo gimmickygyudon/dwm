@@ -1580,23 +1580,23 @@ quit(const Arg *arg)
 void
 quitprompt(const Arg *arg)
 {
-	FILE *pp = popen("echo \"no\nrestart\nyes\" | dmenu -i -nb '#282a36' -sf '#f8f8f2' -sb '#ff5555' -p \"Quit DWM?\"", "r");
+	FILE *pp = popen("echo \"ﰸ CANCEL\n RELOAD\n EXIT\" | dmenu -i -nf '#4c1919' -nb '#ff5555' -sf '#f8f8f2' -sb '#7f2a2a' -p \"DWM \"", "r");
 	if(pp != NULL) {
 		char buf[1024];
 		if (fgets(buf, sizeof(buf), pp) == NULL) {
 			fprintf(stderr, "Quitprompt: Error reading pipe!\n");
 			return;
 		}
-		if (strcmp(buf, "yes\n") == 0) {
+		if (strcmp(buf, " EXIT\n") == 0) {
 			pclose(pp);
 			restart = 0;
 			quit(NULL);
-		} else if (strcmp(buf, "restart\n") == 0) {
+		} else if (strcmp(buf, " RELOAD\n") == 0) {
 			pclose(pp);
 			restart = 1;
 			Arg a = {.i = 1};
 			quit(&a);
-		} else if (strcmp(buf, "no\n") == 0) {
+		} else if (strcmp(buf, "ﰸ CANCEL\n") == 0) {
 			pclose(pp);
 			return;
 		}
@@ -2661,12 +2661,17 @@ main(int argc, char *argv[])
 {
 	if (argc == 2 && !strcmp("-v", argv[1]))
 		die("dwm-"VERSION);
-	else if (argc != 1)
+	else if (argc != 1 && strcmp("-s", argv[1]))
 		die("usage: dwm [-v]");
 	if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
 		fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("dwm: cannot open display");
+	if (argc > 1 && !strcmp("-s", argv[1])) {
+		XStoreName(dpy, RootWindow(dpy, DefaultScreen(dpy)), argv[2]);
+		XCloseDisplay(dpy);
+		return 0;
+	}
 	autostart_exec();
 	checkotherwm();
 	setup();

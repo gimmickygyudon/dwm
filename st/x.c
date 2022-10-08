@@ -34,6 +34,7 @@ typedef struct {
 	void (*func)(const Arg *);
 	const Arg arg;
 	uint  release;
+	int  altscrn;  /* 0: don't care, -1: not alt screen, 1: alt screen */
 } MouseShortcut;
 
 typedef struct {
@@ -255,6 +256,9 @@ static char *opt_title = NULL;
 
 static uint buttons; /* bit field of pressed buttons */
 
+static Cursor cursor;
+static XColor xmousefg, xmousebg;
+
 void
 clipcopy(const Arg *dummy)
 {
@@ -456,6 +460,7 @@ mouseaction(XEvent *e, uint release)
 	for (ms = mshortcuts; ms < mshortcuts + LEN(mshortcuts); ms++) {
 		if (ms->release == release &&
 		    ms->button == e->xbutton.button &&
+			(!ms->altscrn || (ms->altscrn == (tisaltscr() ? 1 : -1))) &&
 		    (match(ms->mod, state) ||  /* exact or forced */
 		     match(ms->mod, state & ~forcemousemod))) {
 			ms->func(&(ms->arg));
@@ -1134,10 +1139,8 @@ void
 xinit(int cols, int rows)
 {
 	XGCValues gcvalues;
-	Cursor cursor;
 	Window parent;
 	pid_t thispid = getpid();
-	XColor xmousefg, xmousebg;
 
 	if (!(xw.dpy = XOpenDisplay(NULL)))
 		die("can't open display\n");
@@ -1734,6 +1737,12 @@ xsetmode(int set, unsigned int flags)
 {
 	int mode = win.mode;
 	MODBIT(win.mode, set, flags);
+        if (flags & MODE_MOUSE) {
+                if (win.mode & MODE_MOUSE)
+                        XUndefineCursor(xw.dpy, xw.win);
+                else
+                        XDefineCursor(xw.dpy, xw.win, cursor);
+        }
 	if ((win.mode & MODE_REVERSE) != (mode & MODE_REVERSE))
 		redraw();
 }

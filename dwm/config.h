@@ -105,14 +105,14 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Right,  focusdir,       {.i = 1 } }, // right
 	{ MODKEY,                       XK_Up,     focusdir,       {.i = 2 } }, // up
 	{ MODKEY,                       XK_Down,   focusdir,       {.i = 3 } }, // down
-	{ MODKEY|ShiftMask,           	XK_Left,   placedir,       {.i = 0 } }, // left
-	{ MODKEY|ShiftMask,        		XK_Right,  placedir,       {.i = 1 } }, // right
-	{ MODKEY|ShiftMask,    			XK_Up,     placedir,       {.i = 2 } }, // up
-	{ MODKEY|ShiftMask,    			XK_Down,   placedir,       {.i = 3 } }, // down
+	{ MODKEY|ControlMask,           XK_Left,   placedir,       {.i = 0 } }, // left
+	{ MODKEY|ControlMask,        	XK_Right,  placedir,       {.i = 1 } }, // right
+	{ MODKEY|ControlMask,    		XK_Up,     placedir,       {.i = 2 } }, // up
+	{ MODKEY|ControlMask,    		XK_Down,   placedir,       {.i = 3 } }, // down
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_Left,   setmfact,       {.f = -0.05} },
-	{ MODKEY|ControlMask,           XK_Right,  setmfact,       {.f = +0.05} },
+	{ MODKEY|ControlMask,           XK_j,      setmfact,       {.f = -0.05} },
+	{ MODKEY|ControlMask,           XK_l,  	   setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY|Mod4Mask,              XK_u,      incrgaps,       {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,      incrgaps,       {.i = -1 } },
@@ -147,8 +147,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY|ControlMask,           XK_Right,  viewnext,       {0} },
-	{ MODKEY|ControlMask,           XK_Left,   viewprev,       {0} },
+	{ MODKEY|ShiftMask,             XK_Right,  viewnext,       {0} },
+	{ MODKEY|ShiftMask,             XK_Left,   viewprev,       {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_Right,  tagtonext,      {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_Left,   tagtoprev,      {0} },
 	TAGKEYS(                        XK_1,                      0)

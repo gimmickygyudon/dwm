@@ -2230,9 +2230,10 @@ strhandle(void)
 			} else {
 				/*
 				 * TODO if defaultbg color is changed, borders
-				 * are dirty
-				 */
-				tfulldirt();
+				 * are dirty -> tfulldirt();
+				 */ 
+				if (j == defaultbg)
+					xclearwin();
 			}
 			return;
 		}

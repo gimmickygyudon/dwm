@@ -18,7 +18,9 @@
 
 #include "sxiv.h"
 #define _MAPPINGS_CONFIG
+#define _WINDOW_CONFIG
 #include "config.h"
+#undef _WINDOW_CONFIG
 
 #include <stdlib.h>
 #include <string.h>
@@ -367,7 +369,7 @@ void update_info(void)
 			bar_put(l, "Caching... %0*d", fw, tns.initnext + 1);
 		else
 			strncpy(l->buf, files[fileidx].name, l->size);
-		bar_put(r, "%s%0*d/%d", mark, fw, fileidx + 1, filecnt);
+		bar_put(r, "%s%d %0*d/%d", mark, markcnt, fw, fileidx + 1, filecnt);
 	} else {
 		bar_put(r, "%s", mark);
 		if (img.ss.on) {
@@ -938,6 +940,26 @@ int main(int argc, char **argv)
 		tns.thumbs = NULL;
 		load_image(fileidx);
 	}
+
+	win.w = WIN_WIDTH;
+	win.h = WIN_HEIGHT;
+
+	if (mode == MODE_IMAGE && filecnt == 1) {
+		win.h -= win.bar.h;
+
+		if (img.w <= win.w && img.h <= win.h) {
+			win.w = img.w;
+			win.h = img.h;
+		} else {
+			double scale = (img.w * win.h > img.h * win.w) ?
+			               (double) win.w / img.w : (double) win.h / img.h;
+			win.w = (int) (img.w * scale);
+			win.h = (int) (img.h * scale);
+		}
+
+		win.h += win.bar.h;
+	}
+
 	win_open(&win);
 	win_set_cursor(&win, CURSOR_WATCH);
 

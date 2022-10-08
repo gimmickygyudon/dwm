@@ -124,6 +124,7 @@ void win_init(win_t *win)
 	win_alloc_color(e, bg, &win->bg);
 	win_alloc_color(e, fg, &win->fg);
 
+	win_alloc_color(e, MARK_COLOR,   &win->markcol);
 	win_alloc_color(e, BAR_BG_COLOR, &win->bar.bgcol);
 	win_alloc_color(e, BAR_FG_COLOR, &win->bar.fgcol);
 
@@ -172,12 +173,8 @@ void win_open(win_t *win)
 		                       &win->w, &win->h);
 	if ((gmask & WidthValue) != 0)
 		sizehints.flags |= USSize;
-	else
-		win->w = WIN_WIDTH;
 	if ((gmask & HeightValue) != 0)
 		sizehints.flags |= USSize;
-	else
-		win->h = WIN_HEIGHT;
 	if ((gmask & XValue) != 0) {
 		if ((gmask & XNegative) != 0) {
 			win->x += e->scrw - win->w;

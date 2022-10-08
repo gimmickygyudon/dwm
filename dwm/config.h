@@ -13,8 +13,8 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
 static const int user_bh            = 10;        /* 2 is the default spacing around the bar's font */
-static const char *fonts[]          = { "JetBrains Mono:size=10" };
-static const char dmenufont[]       = "JetBrains Mono:size=10";
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=10" };
+static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=10";
 static const char col_gray1[]       = "#282a36";
 static const char col_gray2[]       = "#282a36";
 static const char col_gray3[]       = "#f8f8f2";

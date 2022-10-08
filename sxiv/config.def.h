@@ -11,6 +11,9 @@ enum {
  * See X(7) section Resources and xrdb(1) for more information.
  */
 
+static const char * const BAR_BG_COLOR = "#282a36";
+static const char * const BAR_FG_COLOR = "#f8f8f2";
+
 #endif
 #ifdef _IMAGE_CONFIG
 
@@ -100,11 +103,11 @@ static const keymap_t keys[] = {
 	{ 0,            XK_Right,         t_move_sel,           DIR_RIGHT },
 	{ 0,            XK_R,             t_reload_all,         None },
 
-	{ 0,            XK_n,             i_navigate,           +1 },
-	{ 0,            XK_n,             i_scroll_to_edge,     DIR_LEFT | DIR_UP },
+	{ 0,            XK_Right,         i_navigate,           +1 },
+	{ 0,            XK_Right,         i_scroll_to_edge,     DIR_LEFT | DIR_UP },
 	{ 0,            XK_space,         i_navigate,           +1 },
-	{ 0,            XK_p,             i_navigate,           -1 },
-	{ 0,            XK_p,             i_scroll_to_edge,     DIR_LEFT | DIR_UP },
+	{ 0,            XK_Left,          i_navigate,           -1 },
+	{ 0,            XK_Left,          i_scroll_to_edge,     DIR_LEFT | DIR_UP },
 	{ 0,            XK_BackSpace,     i_navigate,           -1 },
 	{ 0,            XK_bracketright,  i_navigate,           +10 },
 	{ 0,            XK_bracketleft,   i_navigate,           -10 },

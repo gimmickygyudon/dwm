@@ -28,7 +28,8 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"feh", "--bg-fill", "--randomize", "~/Pictures/Wallpapers/*",
+	"dwm_module", NULL,
+	"feh", "--bg-fill", "--randomize", "~/Pictures/Wallpapers/*", NULL,
 	NULL /* terminate */
 };
 

@@ -157,7 +157,7 @@ unsigned int defaultunderline = 7;
 + * 7: blinking st cursor
 + * 8: steady st cursor
  */
-static unsigned int cursorstyle = 1;
+static unsigned int cursorstyle = 5;
 static Rune stcursor = 0x2603; /* snowman ("â˜ƒ") */
 
 /*

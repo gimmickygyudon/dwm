@@ -93,13 +93,13 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", "#bd93f9", "-nf", "#4b3a63", "-sb", "#44475a", "-sf", "#f8f8f2", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "tabbed", "-c", "-r", "2", "st", "-w", "''", NULL };
 static const char *networkmenucmd[]  = { "networkmanager_dmenu", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = networkmenucmd } },
+	{ MODKEY,             			XK_w,      spawn,          {.v = networkmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,  	   focusstack,     {.i = +1 } },
@@ -112,8 +112,8 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,        	XK_Right,  placedir,       {.i = 1 } }, // right
 	{ MODKEY|ControlMask,    		XK_Up,     placedir,       {.i = 2 } }, // up
 	{ MODKEY|ControlMask,    		XK_Down,   placedir,       {.i = 3 } }, // down
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_plus,   incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_minus,  incnmaster,     {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_j,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ControlMask,           XK_l,  	   setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
@@ -150,8 +150,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_Right,  viewnext,       {0} },
-	{ MODKEY|ShiftMask,             XK_Left,   viewprev,       {0} },
+	{ MODKEY|ShiftMask,             XK_k,	   viewnext,       {0} },
+	{ MODKEY|ShiftMask,             XK_j,      viewprev,       {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_Right,  tagtonext,      {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_Left,   tagtoprev,      {0} },
 	TAGKEYS(                        XK_1,                      0)
